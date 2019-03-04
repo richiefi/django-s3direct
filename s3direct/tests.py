@@ -492,3 +492,14 @@ class AWSCredentialsTest(TestCase):
         self.assertIsNone(credentials.token)
         self.assertEqual(credentials.secret_key, 'local_secret_key')
         self.assertEqual(credentials.access_key, 'local_access_key')
+
+    @override_settings(
+        S3DIRECT_AWS_ACCESS_KEY_ID='not_as_secret_access_key',
+        S3DIRECT_AWS_SECRET_ACCESS_KEY='not_as_secret_key',
+        AWS_ACCESS_KEY_ID='local_access_key',
+        AWS_SECRET_ACCESS_KEY='local_secret_key')
+    def test_retrieves_aws_credentials_from_django_config_more_specific_preferred(self):
+        credentials = get_aws_credentials()
+        self.assertIsNone(credentials.token)
+        self.assertEqual(credentials.secret_key, 'not_as_secret_key')
+        self.assertEqual(credentials.access_key, 'not_as_secret_access_key')
