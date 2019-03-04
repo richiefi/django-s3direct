@@ -6,12 +6,12 @@ Upload files directly to S3 (or compatible service) from Django.
 
 [![Build Status](https://travis-ci.org/bradleyg/django-s3direct.svg?branch=master)](https://travis-ci.org/bradleyg/django-s3direct)
 
-Directly upload files to S3 and other compatible services (such as [Digital Ocean's Spaces](https://www.digitalocean.com/docs/spaces/)) with Django.  
+Directly upload files to S3 and other compatible services (such as [Digital Ocean's Spaces](https://www.digitalocean.com/docs/spaces/)) with Django.
 <img src="https://raw.githubusercontent.com/bradleyg/django-s3direct/master/screenshot.png" width="381"/>
 
 ## Installation
 
-Install with Pip:  
+Install with Pip:
 ```pip install django-s3direct```
 
 ## Access setup
@@ -19,10 +19,10 @@ Install with Pip:
 ### When setting up access credentials you have two options:
 
 ### Option 1:
-__Generate access credentials and add them directly to your Django settings__  
-If you're not using AWS S3 you can skip to [CORS setup](#cors-setup). If using 
-Amazon S3 you'll also need to create an IAM policy which grants permission to 
-upload to your bucket for your newly created credentials. Remember to swap out 
+__Generate access credentials and add them directly to your Django settings__
+If you're not using AWS S3 you can skip to [CORS setup](#cors-setup). If using
+Amazon S3 you'll also need to create an IAM policy which grants permission to
+upload to your bucket for your newly created credentials. Remember to swap out
 __YOUR_BUCKET_NAME__ for your actual bucket.
 
 ```json
@@ -44,11 +44,11 @@ __YOUR_BUCKET_NAME__ for your actual bucket.
 }
 ```
 
-### Option 2: 
-__Use the EC2 instance profile and its attached IAM role (AWS only)__  
-You'll need to ensure the following trust policy is in place in additon to the 
-policy above. You'll also need to ensure you have the 
-[botocore](https://github.com/boto/botocore) package installed. You already 
+### Option 2:
+__Use the EC2 instance profile and its attached IAM role (AWS only)__
+You'll need to ensure the following trust policy is in place in additon to the
+policy above. You'll also need to ensure you have the
+[botocore](https://github.com/boto/botocore) package installed. You already
 have `botocore` installed if `boto3`
 is a dependency of your project.
 
@@ -69,13 +69,13 @@ is a dependency of your project.
 
 ### CORS setup
 
-You'll need to add a CORS policy on your bucket. Note the ETag header is 
-particularly important as it is used for multipart uploads. For more information 
-see [here](https://github.com/TTLabs/EvaporateJS/wiki/Configuring-The-AWS-S3-Bucket). 
-Remember to swap out YOURDOMAIN.COM in the example below with your domain, 
+You'll need to add a CORS policy on your bucket. Note the ETag header is
+particularly important as it is used for multipart uploads. For more information
+see [here](https://github.com/TTLabs/EvaporateJS/wiki/Configuring-The-AWS-S3-Bucket).
+Remember to swap out YOURDOMAIN.COM in the example below with your domain,
 including port if developing locally.
 
-If using Digital Ocean Spaces you must upload the CORS config via the API/s3cmd 
+If using Digital Ocean Spaces you must upload the CORS config via the API/s3cmd
 CLI. See [here](https://www.digitalocean.com/community/questions/why-can-i-use-http-localhost-port-with-cors-in-spaces)
 for more details.
 
@@ -140,13 +140,13 @@ S3DIRECT_DESTINATIONS = {
     'example_destination': {
         # "key" [required] The location to upload file
         #       1. String: folder path to upload to
-        #       2. Function: generate folder path + filename using a function  
+        #       2. Function: generate folder path + filename using a function
         'key': 'uploads/images',
-    
+
         # "auth" [optional] Limit to specfic Django users
         #        Function: ACL function
         'auth': lambda u: u.is_staff,
-    
+
         # "allowed" [optional] Limit to specific mime types
         #           List: list of mime types
         'allowed': ['image/jpeg', 'image/png', 'video/mp4'],
@@ -162,7 +162,7 @@ S3DIRECT_DESTINATIONS = {
         # "region" [optional] Region if different from AWS_S3_REGION_NAME
         #          String: region name
         'region': 'custom-region', # Default is 'AWS_S3_REGION_NAME'
-        
+
         # "acl" [optional] Custom ACL for object, default is 'public-read'
         #       String: ACL
         'acl': 'private',
@@ -284,7 +284,7 @@ $ python manage.py createsuperuser
 $ python manage.py runserver
 ```
 
-Visit ```http://localhost:8000/admin``` to view the admin widget and 
+Visit ```http://localhost:8000/admin``` to view the admin widget and
 ```http://localhost:8000/form``` to view the custom form widget.
 
 ## Development
