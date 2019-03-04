@@ -74,6 +74,11 @@ def get_key(key, file_name, dest):
 
 
 def get_aws_credentials():
+    s3direct_access_key = getattr(settings, 'S3DIRECT_AWS_ACCESS_KEY_ID', None)
+    s3direct_secret_key = getattr(settings, 'S3DIRECT_AWS_SECRET_ACCESS_KEY', None)
+    if s3direct_access_key and s3direct_secret_key:
+        return AWSCredentials(None, s3direct_secret_key, s3direct_access_key)
+
     access_key = getattr(settings, 'AWS_ACCESS_KEY_ID', None)
     secret_key = getattr(settings, 'AWS_SECRET_ACCESS_KEY', None)
     if access_key and secret_key:
