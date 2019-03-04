@@ -113,6 +113,14 @@ TEMPLATES = [{
 
 # AWS
 
+# There are several ways to provide AWS credentials to this module, most are dangerous (signed in remote users
+# should not have all the privileges that the app server has).
+#
+# The only recommended way is to create a minimal IAM user for s3direct and configure it using S3DIRECT_* env vars.
+# s3direct will use S3DIRECT_* vars if set.
+S3_AWS_ACCESS_KEY_ID = 'less-privileged-access-key-id'
+S3_AWS_SECRET_ACCESS_KEY = 'less-privileged-access-key'
+
 # If these are set to None, the EC2 instance profile and IAM role are used.
 AWS_ACCESS_KEY_ID = 'your-aws-access-key-id'
 AWS_SECRET_ACCESS_KEY = 'your-aws-secret-access-key'
