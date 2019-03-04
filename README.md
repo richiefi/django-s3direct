@@ -1,6 +1,8 @@
 django-s3direct
 ===============
 
+Based on [bradleyg/django-s3direct](https://github.com/bradleyg/django-s3direct)
+
 Upload files directly to S3 (or compatible service) from Django.
 -------------------------------------
 
