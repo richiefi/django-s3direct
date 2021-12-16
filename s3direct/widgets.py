@@ -9,7 +9,7 @@ except ImportError:
     # Django <1.10 compliance
     from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
-from django.utils.http import urlunquote_plus
+from django.utils.http import unquote_plus
 from django.conf import settings
 
 
