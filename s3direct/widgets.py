@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 import os
+from urllib.parse import unquote_plus
+
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 try:
@@ -9,7 +11,6 @@ except ImportError:
     # Django <1.10 compliance
     from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
-from django.utils.http import unquote_plus
 from django.conf import settings
 
 
