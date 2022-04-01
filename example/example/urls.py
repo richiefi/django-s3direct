@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.contrib import admin
 
 
@@ -6,7 +6,7 @@ admin.autodiscover()
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^s3direct/', include('s3direct.urls')),
-    url(r'^form/', include('cat.urls')),
+    path("admin/", admin.site.urls),
+    path("s3direct/", include("s3direct.urls")),
+    path("form/", include("cat.urls")),
 ]

@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import path
 
 from .views import MyView
 
 
 urlpatterns = [
-    url('', MyView.as_view(), name='form'),
+    path("", MyView.as_view(), name="form"),
 ]
