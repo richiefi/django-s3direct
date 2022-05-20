@@ -76,10 +76,28 @@ const beginUpload = element => {
 
 const finishUpload = (element, endpoint, bucket, objectKey) => {
   const link = element.querySelector('.file-link');
-  const url = element.querySelector('.file-url');
-  url.value = endpoint + '/' + bucket + '/' + objectKey;
-  link.setAttribute('href', url.value);
-  link.innerHTML = parseNameFromUrl(url.value)
+  /*
+    .file-url is our more generic result field now. If the widget's initiator prefers,
+    we'll write a JSON object having details like the original filename, too, to it.
+  */
+  const resultField = element.querySelector('.file-url');
+
+  const url = endpoint + '/' + bucket + '/' + objectKey;
+
+  if (resultField.dataset.writeJson === "1") {
+    const file = element.querySelector('.file-input').files[0];
+    resultField.value = JSON.stringify({
+      url: url,
+      name: file.name,
+      type: file.type,
+      size: file.size,
+    });
+  } else {
+    resultField.value = url;
+  }
+
+  link.setAttribute('href', url);
+  link.innerHTML = parseNameFromUrl(url)
     .split('/')
     .pop();
   element.className = 's3direct link-active';

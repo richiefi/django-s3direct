@@ -39,6 +39,11 @@ class S3DirectWidget(widgets.TextInput):
                 "element_id": self.build_attrs(attrs).get("id", "") if attrs else "",
                 "file_name": file_name,
                 "dest": self.dest,
+                "write_json_result": self.build_attrs(attrs).get(
+                    "write_json_result", False
+                )
+                if attrs
+                else False,
                 "file_url": value or "",
                 "name": name,
                 "style": self.build_attrs(attrs).get("style", "") if attrs else "",
